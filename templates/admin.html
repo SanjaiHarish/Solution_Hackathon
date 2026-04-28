@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Admin Panel</h3>
+
+<form method="post">
+<input name="task" class="form-control mb-2" placeholder="Task">
+<input name="skill" class="form-control mb-2" placeholder="Required Skill">
+
+<select name="work_type" class="form-control mb-2">
+<option value="Application">Application</option>
+<option value="Company App">Company App</option>
+</select>
+
+<input type="date" name="assign_date" class="form-control mb-2" required>
+
+<button class="btn btn-primary">Find Volunteers</button>
+</form>
+
+<hr>
+
+{% if volunteers %}
+<form method="post" action="/assign_task">
+
+<input type="hidden" name="task" value="{{task}}">
+<input type="hidden" name="work_type" value="{{work_type}}">
+<input type="hidden" name="assign_date" id="assign_date_hidden">
+
+<ul>
+{% for v in volunteers %}
+<li>
+<input type="radio" name="volunteer" value="{{v[1]}}" required>
+{{v[1]}} - {{v[2]}}
+</li>
+{% endfor %}
+</ul>
+
+<button class="btn btn-success mt-2">Assign Selected Volunteer</button>
+
+</form>
+{% endif %}
+
+<a href="/view_assignments" class="btn btn-info mt-3">View Assignments</a>
+<a href="/logout" class="btn btn-danger mt-3">Logout</a>
+
+<script>
+document.querySelector("form[action='/assign_task']")?.addEventListener("submit", function() {
+    let dateValue = document.querySelector("input[name='assign_date']").value;
+    document.getElementById("assign_date_hidden").value = dateValue;
+});
+</script>
+
+{% endblock %}

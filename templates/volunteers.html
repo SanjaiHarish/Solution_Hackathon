@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Volunteer Registration</h3>
+
+{% if success %}
+<div class="alert alert-success">
+  ✅ Application submitted successfully!
+</div>
+{% endif %}
+
+<form method="post">
+<input name="name" class="form-control mb-2" placeholder="Name" required>
+<input name="email" class="form-control mb-2" placeholder="Email" required>
+
+<div class="skills-box">
+<input type="checkbox" name="skills" value="frontend"> Frontend<br>
+<input type="checkbox" name="skills" value="backend"> Backend<br>
+<input type="checkbox" name="skills" value="react"> React<br>
+<input type="checkbox" name="skills" value="python"> Python<br>
+<input type="checkbox" name="skills" value="database"> Database<br>
+</div>
+
+<input type="number" name="exp" class="form-control mt-2" placeholder="Experience" required>
+
+<button class="btn btn-success mt-2">Apply</button>
+</form>
+
+{% endblock %}

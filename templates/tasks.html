@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Tasks</h3>
+
+<form method="post">
+<input name="task" class="form-control mb-2" placeholder="Task">
+
+<input name="skill" class="form-control mb-2" placeholder="Required Skill">
+
+<select name="priority" class="form-control mb-2">
+<option value="high">High</option>
+<option value="medium">Medium</option>
+<option value="low">Low</option>
+</select>
+
+<button class="btn btn-primary">Add Task</button>
+</form>
+
+<hr>
+
+<ul>
+{% for t in tasks %}
+<li>{{t[1]}} - {{t[3]}}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
